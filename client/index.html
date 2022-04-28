@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <input type="text" id="name" placeholder="name" />
+    <input type="password" id="password" placeholder="password" />
+    <a href="#" id="login-btn">login</a>
+    <br>
+    <br>
+    <a href="./signup.html">signup page</a>
+    <h1 id="head">my content</h1>
+    <br/>
+    <br/>
+    <a href="#" id="set">set session</a>
+    <br/>
+    <br/>
+    <a href="#" id="get">get session</a>
+<script>
+
+const name = document.querySelector("#name");
+const password = document.querySelector("#password");
+const btn = document.querySelector('#login-btn');
+const heading = document.querySelector('#head');
+
+const set = document.querySelector('#set');
+const get = document.querySelector('#get');
+
+set.addEventListener('click', (e) => {
+    sessionStorage.setItem('name', 'ddd');
+});
+
+get.addEventListener('click', (e) => {
+    const name = sessionStorage.getItem('name');
+
+    if (name) {
+        heading.textContent = name;
+    }
+});
+
+
+// btn.addEventListener('click', (e) => {
+//     e.preventDefault();
+
+//     // login(name.value, password.value);
+//     return;
+// });
+
+// const secondLogin = () => {
+
+// }
+
+// const login  = async (name, password) => {
+
+//     // validation
+//     if (name === "" || password === "") return;
+//     const body = JSON.stringify({name, password});
+
+//     const config = {
+//         method: 'POST',
+//         headers: {
+//             "Content-type": "application/json",
+//         },
+//         body
+//     }
+
+//     console.log(config);
+
+//     try {
+//         const res = await fetch('http://localhost:4000/api/login', config);
+//         const data = await res.json();
+//         console.log(data, '🌳');
+//     } catch(err) {
+//         console.log('🔥', err);
+//     }
+
+// // function tokenConfig(method, token, body) {
+// // const config = {
+// //     method,
+// //     headers: {
+// //         "Content-type": "application/json",
+// //     },
+// // }
+// // if (token) config.headers['x-auth-token'] = localStorage.getItem('accessToken');
+// // if (body) config.body = body;
+// // return config;
+// // }
+
+
+// //     export function resetPassword(data) {
+// //     const body = JSON.stringify(data);
+// //     return new Promise(async (resolve, reject) => {
+// //         try {
+// //             const response = await fetch('/dev/verifyPasswordReset', tokenConfig('POST', false, body));
+// //             const data = await response.json();
+// //             if (data.error) {
+// //                 return reject({ error: data.error });
+// //             } else {
+// //                 return resolve(data);
+// //             }
+// //         } catch(error) {
+// //             return reject({ error });
+// //         }
+// //     });
+// // }    
+
+
+// }
+
+</script>
+</body>
+</html>
