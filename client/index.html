@@ -26,6 +26,61 @@
 const name = document.querySelector("#name");
 const password = document.querySelector("#password");
 const btn = document.querySelector('#login-btn');
+
+// XMLhttpRequest experiments with cors
+const xhttp = new XMLHttpRequest();
+xhttp.open('GET', 'http://localhost:4000/api/sensitive-data');
+xhttp.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status == 200) {
+        console.log(JSON.parse(xhttp.response));
+    }
+}
+xhttp.withCredentials = true;
+xhttp.send();
+
+// xhttp.send();
+
+/*
+- [x] - learn methods in XMLhttpreqeust
+- [x] - get a cors error
+- [x] - fix the cors error
+- [x] - create a exploit server and experiment CORS cookie hijacking
+    - [x] - learn how to specify dynamic origins from cors headers
+    - [x] - list down vulnerable configurations world-list
+    - [x] - practice with credentials: true
+    - [/] - read other hackerone reports
+    
+- [ ] - learn URI encoding
+- [ ] - Learn burp common tools suite in depth
+    
+word list (assume the server expected domain is www.website.com)
+----------------------------------------------------------------
+
+- change header origin to evil.com - for dynamically generated urls
+- try evilwebsite.com - some servers just check for last website.com
+- null
+
+https://ejj.io/misconfigured-cors
+https://portswigger.net/research/exploiting-cors-misconfigurations-for-bitcoins-and-bounties
+https://book.hacktricks.xyz/pentesting-web/cors-bypass
+
+*/ 
+
+/*
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       // Typical action to be performed when the document is ready:
+       document.getElementById("demo").innerHTML = xhttp.responseText;
+    }
+};
+xhttp.open("GET", "filename", true);
+xhttp.send();
+*/ 
+
+/*
+session experiments
+
 const heading = document.querySelector('#head');
 
 const set = document.querySelector('#set');
@@ -42,75 +97,35 @@ get.addEventListener('click', (e) => {
         heading.textContent = name;
     }
 });
+*/
 
+/*
 
-// btn.addEventListener('click', (e) => {
-//     e.preventDefault();
+// auth config
 
-//     // login(name.value, password.value);
-//     return;
-// });
+const login  = async (name, password) => {
 
-// const secondLogin = () => {
+    // validation
+    if (name === "" || password === "") return;
+    const body = JSON.stringify({name, password});
+    const config = {
+        method: 'POST',
+        headers: {
+            "Content-type": "application/json",
+        },
+        body
+    }
+    console.log(config);
+    try {
+        const res = await fetch('http://localhost:4000/api/login', config);
+        const data = await res.json();
+        console.log(data, '🌳');
+    } catch(err) {
+        console.log('🔥', err);
+    }
 
-// }
-
-// const login  = async (name, password) => {
-
-//     // validation
-//     if (name === "" || password === "") return;
-//     const body = JSON.stringify({name, password});
-
-//     const config = {
-//         method: 'POST',
-//         headers: {
-//             "Content-type": "application/json",
-//         },
-//         body
-//     }
-
-//     console.log(config);
-
-//     try {
-//         const res = await fetch('http://localhost:4000/api/login', config);
-//         const data = await res.json();
-//         console.log(data, '🌳');
-//     } catch(err) {
-//         console.log('🔥', err);
-//     }
-
-// // function tokenConfig(method, token, body) {
-// // const config = {
-// //     method,
-// //     headers: {
-// //         "Content-type": "application/json",
-// //     },
-// // }
-// // if (token) config.headers['x-auth-token'] = localStorage.getItem('accessToken');
-// // if (body) config.body = body;
-// // return config;
-// // }
-
-
-// //     export function resetPassword(data) {
-// //     const body = JSON.stringify(data);
-// //     return new Promise(async (resolve, reject) => {
-// //         try {
-// //             const response = await fetch('/dev/verifyPasswordReset', tokenConfig('POST', false, body));
-// //             const data = await response.json();
-// //             if (data.error) {
-// //                 return reject({ error: data.error });
-// //             } else {
-// //                 return resolve(data);
-// //             }
-// //         } catch(error) {
-// //             return reject({ error });
-// //         }
-// //     });
-// // }    
-
-
-// }
+}
+*/ 
 
 </script>
 </body>
