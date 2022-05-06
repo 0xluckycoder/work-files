@@ -36,10 +36,6 @@ const server = http.createServer((req, res) => {
         res.writeHead(404, {'Content-Type': 'application/json', corsOptions});
         res.end(JSON.stringify({ message: 'Route Not Found' }));
 	}
-
-	// 	res.statusCode = 200;
-	// 	res.setHeader('Content-Type', 'text/plain');
-	// 	res.end('Hello World');
 });
 
 const PORT  = 4000;
@@ -47,13 +43,3 @@ const PORT  = 4000;
 server.listen(PORT, () => {
 	console.log(`Server is running on ${PORT}`);
 });
-
-
-/*
-
-save data on a json
-
-- learn cors related bugs
-- create authenticate pages
-
-*/ 

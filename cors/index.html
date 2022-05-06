@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <input type="text" id="name" placeholder="name" />
+    <input type="password" id="password" placeholder="password" />
+    <a href="#" id="login-btn">login</a>
+    <br>
+    <br>
+    <a href="./signup.html">signup page</a>
+    <h1 id="head">my content</h1>
+    <br/>
+    <br/>
+    <a href="#" id="set">set session</a>
+    <br/>
+    <br/>
+    <a href="#" id="get">get session</a>
+<script>
+
+const name = document.querySelector("#name");
+const password = document.querySelector("#password");
+const btn = document.querySelector('#login-btn');
+
+// XMLhttpRequest experiments with cors
+const xhttp = new XMLHttpRequest();
+xhttp.open('GET', 'http://localhost:4000/api/sensitive-data');
+xhttp.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status == 200) {
+        console.log(JSON.parse(xhttp.response));
+    }
+}
+xhttp.withCredentials = true;
+xhttp.send();
+
+/*
+- [x] - learn methods in XMLhttpreqeust
+- [x] - get a cors error
+- [x] - fix the cors error
+- [x] - create a exploit server and experiment CORS cookie hijacking
+    - [x] - learn how to specify dynamic origins from cors headers
+    - [x] - list down vulnerable configurations world-list
+    - [x] - practice with credentials: true
+    - [x] - read other hackerone reports
+*/
+
+</script>
+</body>
+</html>
