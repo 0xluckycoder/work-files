@@ -1,5 +1,0 @@
-GET http://localhost:4000/api/login
-
-###
-
-GET https://jsonplaceholder.typicode.com/posts/1
