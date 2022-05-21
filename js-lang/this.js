@@ -30,3 +30,25 @@
 //     return this;
 // }
 // console.log(f2() === undefined);
+
+// class Example {
+//     constructor() {
+//         const proto = Object.getPrototypeOf(this);
+//         console.log(Object.getOwnPropertyNames(proto));
+//     }
+
+//     first() {}
+//     second() {}
+//     static third() {}
+// }
+
+// new Example();
+
+// obj = {name: 'myobj'};
+// console.log(obj);
+// console.log(Object.getPrototypeOf(obj));
+
+// [ ] - Learn Object.create
+// Higher Order Functions
+// Hoisting
+// Clousure
